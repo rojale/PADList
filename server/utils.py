@@ -32,9 +32,31 @@ def getProfileRowInfo(monster, row):
 
 	return monster
 
+
 base_url = "http://www.puzzledragonx.com/en/monsterbook.asp"
 
 session = HTMLSession()
+
+
+awoken_skills_list = {}
+
+awoken_url = 'http://www.puzzledragonx.com/en/awokenskill-list.asp?s=3'
+
+awoken_page = session.get(awoken_url)
+
+awoken_as = awoken_page.html.find("a")
+
+for awoken_a in awoken_as:
+	if 'href' in awoken_a.attrs:
+		if 'awokenskill-list.asp?s=' in awoken_a.attrs['href']:
+			awoken_skill_index = awoken_a.attrs['href'].split("=")[1]
+			inner_img = awoken_a.find("img", first=True)
+			if inner_img is None:
+				continue
+			awoken_skill_name = inner_img.attrs['title']
+			awoken_skills_list[awoken_skill_index] = awoken_skill_name
+
+print(awoken_skills_list)
 
 monster_index = session.get(base_url)
 
@@ -52,6 +74,7 @@ for indexframe in indexframes:
 	if 'monster' not in monster_link:
 		continue
 	monster_url = start_url + monster_link
+	print ("parsing url, ", monster_url)
 	monster_page = session.get(monster_url)
 	monster_html = monster_page.html
 	stat_table = monster_html.find("#tablecustom", first=True)
@@ -67,9 +90,23 @@ for indexframe in indexframes:
 	profile_rows = profile_table.find("tr")
 	for profile_row in profile_rows:
 		monster = getProfileRowInfo(monster, profile_row)
-	monster['skill_cd'] = monster_html.search('Turns ( {} Turns at Lv.')[0]
+	skill_cd = monster_html.search("Turns ( {} Turns at Lv.")
+	if skill_cd is not None:
+		monster['skill_cd'] = skill_cd[0]
 	monster['link'] = monster_url
 
+	awoken1_rows = monster_html.find(".awoken1")
+	awoken_skills = []
+	for awoken1_row in awoken1_rows:
+		skill_links = awoken1_row.absolute_links
+		for link in skill_links:
+			if 'awokenskill.asp?s=' in link:
+				skill_index = link.split("=")[1]
+				skill_name = awoken_skills_list[skill_index]
+				awoken_skills.append(skill_name)
+	monster['awoken_skills'] = awoken_skills
+
+	print(monster)
 	monsters.append(monster)
 
 with open('monster_data.json', 'w') as output_file:
