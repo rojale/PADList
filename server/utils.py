@@ -56,13 +56,19 @@ for awoken_a in awoken_as:
 			awoken_skill_name = inner_img.attrs['title']
 			awoken_skills_list[awoken_skill_index] = awoken_skill_name
 
-print(awoken_skills_list)
+if '64' not in awoken_skills_list:
+	awoken_skills_list['64'] = 'Combo Orb'
+
+with open('as_data.json', 'w') as output_file:
+	json.dump(awoken_skills_list, output_file)
 
 monster_index = session.get(base_url)
 
 indexframes = monster_index.html.find(".indexframe")
 
 monsters = []
+
+monster_types = []
 
 start_url = "http://www.puzzledragonx.com/en/"
 for indexframe in indexframes:
@@ -90,6 +96,9 @@ for indexframe in indexframes:
 	profile_rows = profile_table.find("tr")
 	for profile_row in profile_rows:
 		monster = getProfileRowInfo(monster, profile_row)
+	for type in monster['types']:
+		if type not in monster_types:
+			monster_types.append(type)	
 	skill_cd = monster_html.search("Turns ( {} Turns at Lv.")
 	if skill_cd is not None:
 		monster['skill_cd'] = skill_cd[0]
@@ -102,12 +111,17 @@ for indexframe in indexframes:
 		for link in skill_links:
 			if 'awokenskill.asp?s=' in link:
 				skill_index = link.split("=")[1]
-				skill_name = awoken_skills_list[skill_index]
+				skill_name = awoken_skills_list.get(skill_index, None)
+				if skill_name is None:
+					continue
 				awoken_skills.append(skill_name)
 	monster['awoken_skills'] = awoken_skills
 
 	print(monster)
 	monsters.append(monster)
+
+with open('types_data.json', 'w') as output_file:
+	json.dump(monster_types, output_file)
 
 with open('monster_data.json', 'w') as output_file:
 	json.dump(monsters, output_file)
