@@ -42,7 +42,10 @@ export default class Table extends Component {
 				types: monster.types.map(type => {
 					let newTypes = type.replace("/", "");
 					return newTypes.replace(" ", "");
-				})
+				}),
+				atk: parseInt(monster.atk),
+				hp: parseInt(monster.hp),
+				rcv: parseInt(monster.rcv)
 			};
 		});
 
