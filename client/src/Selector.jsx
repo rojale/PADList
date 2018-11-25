@@ -2,7 +2,7 @@ import React from 'react';
 
 import Select from 'react-select';
 
-const Selector = ({items, onChange}) => {
+const Selector = ({items, placeholder, onChange}) => {
 
 	const options = items.map((item)=> {return {label: item.name, value: item.key}})
 
@@ -11,6 +11,7 @@ const Selector = ({items, onChange}) => {
 	isSearchable
 	options={options}
 	onChange={onChange}
+	placeholder={placeholder}
 	/>
 }
 
