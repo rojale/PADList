@@ -80,9 +80,11 @@ export default class Container extends Component {
 
 		return (
 			<div>
-			<Selector items={this.state.element_filter} onChange={this.changeElementFilter} placeholder="Element"/>
-			<Selector items={this.state.as_filter} onChange={this.changeASFilter} placeholder="Awoken Skills"/>
-			<Selector items={this.state.type_filter} onChange={this.changeTypeFilter} placeholder="Monster Type"/>
+			<div style={{display: 'flex', width: '50%', flexDirection: 'column'}}>
+				<Selector items={this.state.element_filter} onChange={this.changeElementFilter} placeholder="Element"/>
+				<Selector items={this.state.as_filter} onChange={this.changeASFilter} placeholder="Awoken Skills"/>
+				<Selector items={this.state.type_filter} onChange={this.changeTypeFilter} placeholder="Monster Type"/>
+			</div>
 
 				<Table asFilter={asFilter} elementFilter={elementFilter} typeFilter={typeFilter}/>
 			</div>
