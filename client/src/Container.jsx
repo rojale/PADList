@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AdSense from 'react-adsense';
 
 import Selector from './Selector';
 
@@ -6,6 +7,8 @@ import Table from './Table';
 
 import as_data from './as_data';
 import types_data from './types_data';
+
+import './mainCss.css';
 
 export default class Container extends Component {
 	constructor(props){
@@ -80,11 +83,15 @@ export default class Container extends Component {
 
 		return (
 			<div>
-			<div style={{display: 'flex', width: '50%', flexDirection: 'column'}}>
-				<Selector items={this.state.element_filter} onChange={this.changeElementFilter} placeholder="Element"/>
-				<Selector items={this.state.as_filter} onChange={this.changeASFilter} placeholder="Awoken Skills"/>
-				<Selector items={this.state.type_filter} onChange={this.changeTypeFilter} placeholder="Monster Type"/>
-			</div>
+				<div style={{display: 'flex', width: '100%'}}>
+					<div style={{display: 'flex', width: '50%', flexDirection: 'column'}}>
+						<Selector items={this.state.element_filter} onChange={this.changeElementFilter} placeholder="Element"/>
+						<Selector items={this.state.as_filter} onChange={this.changeASFilter} placeholder="Awoken Skills"/>
+						<Selector items={this.state.type_filter} onChange={this.changeTypeFilter} placeholder="Monster Type"/>
+					</div>
+					<div style={{flex: 1}}>
+					</div>
+				</div>
 
 				<Table asFilter={asFilter} elementFilter={elementFilter} typeFilter={typeFilter}/>
 			</div>

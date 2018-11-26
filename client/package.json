@@ -2,8 +2,10 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://bgutils.com/padlist",
   "dependencies": {
     "react": "^16.6.3",
+    "react-adsense": "0.0.6",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
     "react-select": "^2.1.2",

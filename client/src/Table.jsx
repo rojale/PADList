@@ -34,7 +34,7 @@ export default class Table extends Component {
 				...monster,
 				skill_cd: isNaN(monster.skill_cd)
 					? "No Skill"
-					: monster.skill_cd,
+					: parseInt(monster.skill_cd),
 				elements: monster.elements.map(element => {
 					let newElement = element.replace("/", "");
 					return newElement.replace(" ", "");
@@ -99,12 +99,21 @@ export default class Table extends Component {
 				Header: "Types",
 				accessor: "types",
 				Cell: row => <p>{row.original.types.map(type => type + " ")}</p>
+			},
+			{
+				Header: 'Awoken Skills',
+				accessor: 'awoken_skills',
+				Cell: row => <div className="awokenSkills">{row.original.awoken_skills.map((skill)=><p>{skill}</p>)}</div>
 			}
 		];
 
 		return (
 			<div>
-				<ReactTable data={monsterData} columns={columns} />
+				<ReactTable
+				data={monsterData}
+				columns={columns}
+				filterable
+				 />
 			</div>
 		);
 	}
