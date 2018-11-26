@@ -1,14 +1,14 @@
 .-even {
-	background-color: lightgrey;
+	background-color: rgba(116, 185, 255,0.5);
 }
 
 
 .rt-table{
-	background-color: white;
+	background-color: rgba(255,255,255, 0.5);
 }
 
 .pagination-bottom{
-	background-color: white;
+	background-color: rgba(255,255,255, 0.25);
 }
 
 .css-10nd86i {
@@ -29,5 +29,5 @@
 body {
 	background: radial-gradient(#ecf0f1 15%, white 16%) 0 0, radial-gradient(black 15%, transparent 16%) 8px 8px, radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px, radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
 	background-color: black;
-	background-size: 16px 16px;
+	background-size: 10px 10px;
 }

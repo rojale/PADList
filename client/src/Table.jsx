@@ -85,15 +85,18 @@ export default class Table extends Component {
 			},
 			{
 				Header: "HP",
-				accessor: "hp"
+				accessor: "hp",
+				width: 100
 			},
 			{
 				Header: "Attack",
-				accessor: "atk"
+				accessor: "atk",
+				width: 100
 			},
 			{
 				Header: "Recovery",
-				accessor: "rcv"
+				accessor: "rcv",
+				width: 100
 			},
 			{
 				Header: "Types",
