@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AdSense from "react-adsense";
 
 import Selector from "./Selector";
 
@@ -150,7 +149,8 @@ export default class Container extends Component {
 							placeholder="Monster Type"
 						/>
 					</div>
-					<div style={{ flex: 1 }} />
+					<div style={{ flex: 1 , display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}>
+					</div>
 				</div>
 
 				<Table
