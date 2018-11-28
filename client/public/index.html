@@ -25,11 +25,13 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div style="display: flex; width: 100%; background-color: rgba(127, 140, 141,0.5); justify-content: space-between">
+    <div style="display: flex; width: 100%; background-color: rgba(127, 140, 141,0.5); justify-content: space-between; flex-wrap: wrap">
       <script type="text/javascript">
       ( function() {
+        const ad_width = window.innerWidth <= 750 ? 320 : 728;
+        const ad_height = window.innerWidth <= 750 ? 50 : 90;
         if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-        var unit = {"calltype":"async[2]","publisher":"rojale","width":728,"height":90,"sid":"Chitika Default"};
+        var unit = {"calltype":"async[2]","publisher":"rojale","width":ad_width,"height":ad_height,"sid":"Chitika Default"};
         var placement_id = window.CHITIKA.units.length;
         window.CHITIKA.units.push(unit);
         document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
@@ -38,8 +40,10 @@
       <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
       <script type="text/javascript">
       ( function() {
+        const ad_width = window.innerWidth <= 750 ? 320 : 728;
+        const ad_height = window.innerWidth <= 750 ? 50 : 90;
         if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-        var unit = {"calltype":"async[2]","publisher":"rojale","width":728,"height":90,"sid":"Chitika Default"};
+        var unit = {"calltype":"async[2]","publisher":"rojale","width":ad_width,"height":ad_height,"sid":"Chitika Default"};
         var placement_id = window.CHITIKA.units.length;
         window.CHITIKA.units.push(unit);
         document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
